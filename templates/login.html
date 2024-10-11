@@ -1,0 +1,174 @@
+{% block content %}
+
+
+<div class="container">
+  <nav class="navigation">
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('product_tracing') }}">Product Tracking</a>
+  </nav>
+  <div class="logo">
+    <img src="{{ url_for('static', filename='login_logo.png') }}" alt="Logo">
+    
+  </div>
+  <div class="login-form">
+    <h2>Login</h2>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </main>
+    <form method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="buttons">
+        <button type="submit" class="btn admin-login">Login</button>
+      </div>
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+  </div>
+</div>
+<style>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #EBEFFF;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo img {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.logo h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #5865F2;
+}
+
+.login-form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: -10px;
+  font-size: 48px;
+  font-weight: bold;
+  color: #5865F2;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.admin-login {
+  background-color: #656ED3;
+  color: #fff;
+}
+
+.user-login {
+  background-color: #656ED3;
+  color: #fff;
+}
+.flash {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+  
+.navigation {
+    background-color: #6356e5;
+    padding: 15px;
+    text-align: center;
+    position: absolute;
+    top: 0%;
+  width: 97%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+  font-size: 1.3em;
+}
+
+.navigation a:hover {
+    background-color: #4b40bd;
+    color: #fff;
+}
+
+
+</style>
+{% endblock %}

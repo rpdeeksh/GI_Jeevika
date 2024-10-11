@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 style="font-size: 2.5em;">Hello {{ username }},</h1>
+<h2 style="font-size: 2em;">Datasheet</h2>
+
+<!-- Amounts Section -->
+<div class="amounts-section">
+    <div class="amount-box">
+        {% if admin_status %}
+        <h3>Amount paid</h3>
+        {% else %}
+        <h3>Amount Received</h3>
+        {% endif %}
+        <p>{{ amount_received }}</p>
+    </div>
+    <div class="amount-box">
+        {% if admin_status %}
+        <h3>Amount Yet to Pay</h3>
+        {% else %}
+        <h3>Amount Yet to Receive</h3>
+        {% endif %}
+        <p style="color: #ba4a4a;">{{ amount_yet_to_receive }}</p>
+    </div>
+</div>
+
+{% if not admin_status %}
+<a href="{{ url_for('add_product') }}" class="button">Add New Product</a>
+{% endif %}
+
+<div class="along_row">
+    <input type="text" id="searchInput" placeholder="Search...">
+</div>
+
+<!-- Approved Requests Table -->
+<h3>Approved Requests</h3>
+<table id="approvedTable">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Username</th>
+            <th>Product Category</th>
+            <th>Product Quality</th>
+            <th>Approved Price</th>
+            <th>Return Status</th>
+            <th>Sold Status</th>
+            <th>Payment Status</th>
+            <th>Quality Control</th>
+            <th>Trackability Key</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="approvedTBody">
+        {% for product in approved_products %}
+        <tr>
+            <td data-label="Date">Date: {{ product['date'] }}</td>
+            <td data-label="Username">Username: {{ product['username'] }}</td>
+            <td data-label="Product Category">Product Category: {{ product['product_category'] }}</td>
+            <td data-label="Product Quality">Product Quality: {{ product['product_quality'] }}</td>
+            <td data-label="Approved Price">Approved Price: {{ product['approved_price'] }}</td>
+            <td data-label="Return Status">Return Status: {{ product['return_status'] }}</td>
+            <td data-label="Sold Status">Sold Status: {{ product['sold_status'] }}</td>
+            <td data-label="Payment Status">Payment Status: {{ product['payment_status'] }}</td>
+            <td data-label="Quality Control">Quality Control: {{ product['quality_control'] }}</td>
+            <td data-label="Trackability Key">Trackability Key: {{ product['trackability_key'] }}</td>
+            <td data-label="Actions">
+                <button onclick="window.location.href='{{ url_for('edit_product', id=product['id']) }}'">Edit</button>
+                <button onclick="return confirm('Are you sure you want to delete this product?')" href="{{ url_for('delete_product', id=product['id']) }}">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- Approved Requests Pagination -->
+<div id="approvedPagination" class="pagination"></div>
+
+<!-- Pending Requests Table -->
+<h3>Pending Requests</h3>
+<table id="pendingTable">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Username</th>
+            <th>Product Category</th>
+            <th>Product Quality</th>
+            <th>Approved Price</th>
+            <th>Return Status</th>
+            <th>Sold Status</th>
+            <th>Payment Status</th>
+            <th>Quality Control</th>
+            <th>Trackability Key</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="pendingTBody">
+        {% for product in pending_products %}
+        <tr>
+            <td data-label="Date">Date: {{ product['date'] }}</td>
+            <td data-label="Username">Username: {{ product['username'] }}</td>
+            <td data-label="Product Category">Product Category: {{ product['product_category'] }}</td>
+            <td data-label="Product Quality">Product Quality: {{ product['product_quality'] }}</td>
+            <td data-label="Approved Price">Approved Price: {{ product['approved_price'] }}</td>
+            <td data-label="Return Status">Return Status: {{ product['return_status'] }}</td>
+            <td data-label="Sold Status">Sold Status: {{ product['sold_status'] }}</td>
+            <td data-label="Payment Status">Payment Status: {{ product['payment_status'] }}</td>
+            <td data-label="Quality Control">Quality Control: {{ product['quality_control'] }}</td>
+            <td data-label="Trackability Key">Trackability Key: {{ product['trackability_key'] }}</td>
+            <td data-label="Actions">
+                <button onclick="window.location.href='{{ url_for('edit_product', id=product['id']) }}'">Edit</button>
+                <button onclick="return confirm('Are you sure you want to delete this product?')" href="{{ url_for('delete_product', id=product['id']) }}">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- Pending Requests Pagination -->
+<div id="pendingPagination" class="pagination"></div>
+
+{% endblock %}

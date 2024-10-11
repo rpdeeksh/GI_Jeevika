@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Edit Product Details</h2>
+<form method="POST">
+    <label for="approved_price">Approved Price:</label>
+    <input type="number" id="approved_price" name="approved_price" step="0.01" value="{{ product.approved_price if product else '' }}" min=0 required>
+    <label for="return_status">Return Status:</label>
+    <select id="return_status" name="return_status" required>
+        <option value="returned" {% if product and product.return_status == 'returned' %}selected{% endif %}>Returned</option>
+        <option value="not returned" {% if product and product.return_status == 'not returned' %}selected{% endif %}>Not Returned</option>
+    </select>
+    <label for="sold_status">Sold Status:</label>
+    <select id="sold_status" name="sold_status" required>
+        <option value="sold" {% if product and product.sold_status == 'sold' %}selected{% endif %}>Sold</option>
+        <option value="unsold" {% if product and product.sold_status == 'unsold' %}selected{% endif %}>Unsold</option>
+    </select>
+    <label for="payment_status">Payment Status:</label>
+    <select id="payment_status" name="payment_status" required>
+        <option value="paid" {% if product and product.payment_status == 'paid' %}selected{% endif %}>Paid</option>
+        <option value="unpaid" {% if product and product.payment_status == 'unpaid' %}selected{% endif %}>Not Paid</option>
+    </select>
+    <label for="quality_control">Quality Control:</label>
+    <select id="quality_control" name="quality_control" required>
+        <option value="passed" {% if product and product.quality_control == 'passed' %}selected{% endif %}>Passed</option>
+        <option value="failed" {% if product and product.quality_control == 'failed' %}selected{% endif %}>Failed</option>
+    </select>
+    <button type="submit">Update Product</button>
+</form>
+{% endblock %}

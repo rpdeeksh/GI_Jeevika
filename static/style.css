@@ -1,0 +1,489 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F3FF; /* Light purple background */
+    color: #333; /* Black text color */
+}
+
+/* Header styling */
+header {
+    background-color: #6356e5; /* Purple header */
+    color: #FFFFFF; /* White text in header */
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Navigation links */
+nav {
+    margin-top: 1rem;
+}
+
+nav a {
+    color: #FFFFFF; /* White text for links */
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+/* Main content area */
+main {
+    padding: 2rem;
+}
+
+/* Headings */
+h1, h2 {
+    color: #6356e5; /* Darker purple for headings */
+}
+
+/* Form styling */
+form {
+    background-color: #FFFFFF; /* White background for forms */
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333; /* Black labels */
+}
+
+input, select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Buttons */
+button, .button {
+    background-color: #6356e5; /* Purple buttons */
+    color: #FFFFFF; /* White text on buttons */
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+button:hover, .button:hover {
+    background-color: #352c90; /* Darker purple on hover */
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #FFFFFF; /* White table background */
+}
+
+th, td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #E0D8F3; /* Light purple border */
+}
+
+th {
+    background-color: #6356e5; /* Purple headers */
+    color: #FFFFFF; /* White text for headers */
+}
+
+tr:nth-child(even) {
+    background-color: #F5F3FF; /* Light purple for even rows */
+}
+
+tr:hover {
+    background-color: #E0D8F3; /* Light purple hover effect */
+}
+
+/* Flash messages */
+.flash {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Search and pagination */
+#searchInput {
+    width: max(15%, 100px);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 0;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.along_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+} */
+
+/* .pagination button {
+    margin: 0 0.25rem;
+    background-color: #6356e5; /* Purple pagination buttons */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+/* .pagination button:hover {
+    background-color: #342b91; /* Darker purple on hover */
+} */ */
+
+/* Button group */
+.button-group {
+    display: flex;
+    gap: 5px;
+}
+
+.button-group .button {
+    font-size: 0.8em;
+    padding: 0.3em 0.6em;
+}
+
+/* Responsive styling */
+
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F3FF; /* Light purple background */
+    color: #333; /* Black text color */
+}
+
+/* Header styling */
+header {
+    background-color: #6356e5; /* Purple header */
+    color: #FFFFFF; /* White text in header */
+    padding: 1rem;
+}
+
+/* Container for logo and navigation */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+
+/* Logo styling */
+.logo img {
+    height: 40px; /* Adjust logo size for mobile */
+    margin-right: 20px;
+}
+
+/* Navigation styling */
+.navigation {
+    display: flex;
+    gap: 20px; /* Space between nav items */
+    flex: 1; /* Allows navigation to take available space */
+    justify-content: flex-end; /* Center nav items */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.navigation a {
+    color: #FFFFFF; /* White text for links */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Highlight active link */
+.navigation a.active {
+    background-color: #FFFFFF; /* White background for active link */
+    color: #6356e5; /* Purple text for active link */
+}
+
+/* Hover effects */
+.navigation a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+}
+
+/* Main content area */
+main {
+    padding: 1rem; /* Reduced padding for mobile */
+}
+
+/* Flash messages */
+.flash {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+/* Responsive styling for mobile */
+
+/* General styling and header adjustments for small screens */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    padding: 1rem;
+}
+
+.logo img {
+    height: 40px; /* Adjust logo size for mobile */
+    margin-right: 20px;
+}
+
+/* Navigation styling */
+.navigation {
+    display: flex;
+    gap: 20px; /* Space between nav items */
+    flex-wrap: wrap;
+}
+
+.navigation a {
+    color: #FFFFFF; /* White text for links */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.navigation a.active {
+    background-color: #FFFFFF; /* White background for active link */
+    color: #6356e5; /* Purple text for active link */
+}
+
+/* Responsive adjustments for header, navigation, and logo */
+
+
+/* Responsive styling for very small screens */
+@media (max-width: 480px) {
+    td {
+        padding-left: 30%;
+    }
+
+    td:before {
+        left: 10px;
+        width: 35%;
+    }
+}
+/* General styling and table adjustments for small screens */
+
+/* Responsive styling for mobile view */
+/* Responsive table styling for mobile */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block; /* Make table elements block */
+        width: 100%; /* Ensure table takes up full width */
+    }
+
+    thead {
+        display: none; /* Hide table headers on mobile */
+    }
+
+    tr {
+        margin-bottom: 1rem;
+        border: 1px solid #ccc; /* Add borders around rows */
+        padding: 0.5rem;
+    }
+
+    td {
+        display: block;
+        position: relative;
+        padding: 0.5rem 0;
+        text-align: left;
+        border: none; /* Remove borders around table data */
+    }
+
+    td:before {
+        display: none; /* Hide the pseudo-element as you are now including headings directly in the data */
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    td {
+        padding-left: 0;
+    }
+}
+
+
+
+/* Responsive design for tablets and smaller devices */
+
+
+/* Mobile-specific styles */
+@media (max-width: 480px) {
+    .header-container {
+        align-items: center; /* Center items on very small screens */
+    }
+
+    .navigation {
+        flex-direction: column; /* Stack navigation items */
+        gap: 10px; /* Increase space between items */
+        justify-content: center; /* Ensure items are centered */
+        align-items: center; /* Align items to center */
+        width: 80%; /* Full width navigation */        
+    }
+
+    .navigation a {
+        width: 100%; /* Full-width links for easy clicking */
+        text-align: center; /* Center the text in links */
+        padding: 0.5rem; /* Increase padding for touch targets */
+        font-size: 100%; /* Increase font size for readability */
+        margin-left: -10px;
+    }
+    .amounts-section{
+        width: 100% !important;
+    }
+}
+.amounts-section {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-bottom: 20px;
+    width: 60%;
+}
+
+.amount-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 48%;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.amount-box h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.amount-box p {
+    font-size: 24px;
+    color: #4CAF50; /* Change this color based on your preference */
+    font-weight: bold;
+}
+/* Navigation Bar */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    padding: 1rem;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 20px;
+}
+
+/* Navigation Styling */
+.navigation {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.navigation a {
+    color: #FFFFFF; /* White text for links */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: #6356e5; /* Purple background */
+    transition: background-color 0.3s ease;
+}
+
+.navigation a:hover {
+    background-color: #4b4fc5; /* Darker purple on hover */
+}
+
+/* Active Link Styling */
+.navigation a.active {
+    background-color: #FFFFFF; /* White background for active link */
+    color: #6356e5; /* Purple text for active link */
+}
+/* Pagination styling with scroll */
+.pagination {
+    display: flex;
+    justify-content: flex-start; /* Align pagination to the start */
+    margin-top: 1rem;
+    overflow-x: auto; /* Add horizontal scroll when buttons overflow */
+    padding: 0.5rem;
+    white-space: nowrap; /* Prevent buttons from wrapping to the next line */
+    scrollbar-width: thin; /* Optional: thinner scrollbar */
+}
+
+.pagination button {
+    margin: 0 0.25rem;
+    background-color: #6356e5; /* Purple pagination buttons */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.pagination button:hover {
+    background-color: #342b91; /* Darker purple on hover */
+}
+
+/* Hide the default scrollbar but allow scrolling */
+.pagination::-webkit-scrollbar {
+    height: 8px;
+}
+
+.pagination::-webkit-scrollbar-thumb {
+    background-color: #6356e5;
+    border-radius: 10px;
+}
+
+.pagination::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}

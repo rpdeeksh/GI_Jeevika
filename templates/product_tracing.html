@@ -1,0 +1,310 @@
+{% block content %}
+
+
+<div class="container">
+  <nav class="navigation">
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('product_tracing') }}">Product Tracking</a>
+  </nav>
+  <div class="logo">
+    <img src="{{ url_for('static', filename='login_logo.png') }}" alt="Logo">
+
+  </div>
+  <div class="tracking-form">
+    <h2>Product Tracking</h2>
+    <form method="POST">
+      <div class="form-group">
+        
+        <label for="trackability_key">Enter Trackability Key:</label>
+        <input type="text" id="trackability_key" name="trackability_key" required>
+       
+      </div>
+      <div class="buttons">
+        <button type="submit" class="btn search-button">Search</button>
+      </div>
+    </form>
+
+    {% if product %}
+    <!-- Table to display product details -->
+    <h3>Product Details</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Product Category</th>
+            <th>Approved Price</th>
+            <th>Date of Manufacture</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ product['username'] }}</td>
+            <td>{{ product['product_category'] }}</td>
+            <td>{{ product['approved_price'] }}</td>
+            <td>{{ product['date'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% endif %}
+  </div>
+</div>
+<style>
+  
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+  
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #EBEFFF;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+
+}
+
+.logo img {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.logo h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #5865F2;
+}
+
+.login-form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: -10px;
+  font-size: 48px;
+  font-weight: bold;
+  color: #5865F2;
+}
+
+.form-group {
+  margin-bottom: 25px;
+ 
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.admin-login {
+  background-color: #656ED3;
+  color: #fff;
+}
+
+.user-login {
+  background-color: #656ED3;
+  color: #fff;
+}
+.flash {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.navigation {
+    background-color: #6356e5;
+    padding: 15px;
+    text-align: center;
+    position: absolute;
+    top: 0%;
+  width: 97%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+  font-size: 1.3em;
+}
+
+.navigation a:hover {
+    background-color: #4b40bd;
+    color: #fff;
+}
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+  }
+
+  .tracking-form {
+    background-color: #fff;
+    padding: 0px 30px 50px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: max(30%, 350px);
+    max-width: 600px;
+    box-sizing: border-box;
+  }
+
+  .tracking-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: bold;
+    color: #6356e5;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    background-color: #6356e5;
+    color: #fff;
+  }
+
+  .btn:hover {
+    background-color: #4b4fc5;
+  }
+
+  /* Table container for responsiveness */
+  .table-container {
+    overflow-x: auto; /* Enable horizontal scrolling for large tables */
+    width: 100%; /* Ensure it takes full width */
+    margin-top: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #E0D8F3; /* Light purple border */
+  }
+
+  th {
+    background-color: #6356e5; /* Purple background */
+    color: #FFFFFF; /* White text */
+  }
+
+  tr:nth-child(even) {
+    background-color: #F5F3FF; /* Light purple for even rows */
+  }
+
+  tr:hover {
+    background-color: #E0D8F3; /* Light purple hover effect */
+  }
+  </style>
+  {% endblock %}

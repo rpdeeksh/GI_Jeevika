@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 style="font-size: 2.5em;">Hello {{ username }}, </h1>
+<h2 style="font-size: 2em";>Dashboard</h2>
+
+<div id="charts-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+    {% if is_admin %}
+    <div id="products-by-user-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="total-approved-not-approved-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="total-sold-unsold-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="total-returned-not-returned-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="total-quality-control-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="total-production-time-series" style="flex: 1; min-width: 300px;"></div>
+    {% else %}
+    <div id="sold-unsold-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="approved-not-approved-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="returned-not-returned-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="quality-control-chart" style="flex: 1; min-width: 300px;"></div>
+    <div id="production-time-series" style="flex: 1; min-width: 300px;"></div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Determine the correct API endpoint based on whether the user is admin or not
+    const apiUrl = "{{ url_for('user_dashboard_data') }}" 
+                    {% if is_admin %} 
+                    .replace('user', 'admin') 
+                    {% endif %};
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                renderCharts(data);
+            }
+        })
+        .catch(error => console.error('Error fetching dashboard data:', error));
+});
+
+function renderCharts(data) {
+    if (!data.adminStatus) {
+        // User Charts
+        Plotly.newPlot('sold-unsold-chart', [{
+            labels: ['Sold', 'Unsold'],
+            values: [data.soldCount, data.unsoldCount],
+            type: 'pie'
+        }], { title: 'Sold vs Unsold Products' });
+
+        Plotly.newPlot('approved-not-approved-chart', [{
+            labels: ['Approved', 'Not Approved'],
+            values: [data.approvedCount, data.notApprovedCount],
+            type: 'pie'
+        }], { title: 'Approved vs Not Approved Products' });
+
+        Plotly.newPlot('returned-not-returned-chart', [{
+            labels: ['Returned', 'Not Returned'],
+            values: [data.returnedCount, data.notReturnedCount],
+            type: 'pie'
+        }], { title: 'Returned vs Not Returned Products' });
+
+        Plotly.newPlot('quality-control-chart', [{
+            labels: ['Passed', 'Failed'],
+            values: [data.passedQCCount, data.failedQCCount],
+            type: 'pie'
+        }], { title: 'Quality Control Pass vs Fail' });
+
+        Plotly.newPlot('production-time-series', [{
+            x: data.dates,
+            y: data.productCounts,
+            type: 'scatter',
+            mode: 'lines+markers'
+        }], { title: 'Product Production Over Time' });
+    } else {
+        // Admin Charts
+        Plotly.newPlot('products-by-user-chart', [{
+            labels: data.productsByUser,
+            values: data.productsByUserValues,
+            type: 'pie'
+        }], { title: 'Products by User' });
+
+        Plotly.newPlot('total-approved-not-approved-chart', [{
+            labels: ['Approved', 'Not Approved'],
+            values: [data.totalApprovedCount, data.totalNotApprovedCount],
+            type: 'pie'
+        }], { title: 'Total Approved vs Not Approved Products' });
+
+        Plotly.newPlot('total-sold-unsold-chart', [{
+            labels: ['Sold', 'Unsold'],
+            values: [data.totalSoldCount, data.totalUnsoldCount],
+            type: 'pie'
+        }], { title: 'Total Sold vs Unsold Products' });
+
+        Plotly.newPlot('total-returned-not-returned-chart', [{
+            labels: ['Returned', 'Not Returned'],
+            values: [data.totalReturnedCount, data.totalNotReturnedCount],
+            type: 'pie'
+        }], { title: 'Total Returned vs Not Returned Products' });
+
+        Plotly.newPlot('total-quality-control-chart', [{
+            labels: ['Passed', 'Failed'],
+            values: [data.totalPassedQCCount, data.totalFailedQCCount],
+            type: 'pie'
+        }], { title: 'Total Quality Control Pass vs Fail' });
+
+        Plotly.newPlot('total-production-time-series', [{
+            x: data.dates,
+            y: data.productCounts,
+            type: 'scatter',
+            mode: 'lines+markers'
+        }], { title: 'Total Product Production Over Time' });
+    }
+}
+</script>
+{% endblock %}

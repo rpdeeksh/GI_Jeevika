@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>{% if product %}Edit Product{% else %}Add New Product{% endif %}</h2>
+<form method="POST">
+    <label for="product_category">Product Category:</label>
+    <input type="text" id="product_category" name="product_category" value="{{ product.product_category if product else '' }}" required>
+    <label for="product_quality">Product Quality:</label>
+    <select id="product_quality" name="product_quality" required>
+        <option value="q1" {% if product and product.product_quality == 'q1' %}selected{% endif %}>Q1</option>
+        <option value="q2" {% if product and product.product_quality == 'q2' %}selected{% endif %}>Q2</option>
+    </select>
+    <button type="submit">{% if product %}Update{% else %}Add{% endif %} Product</button>
+</form>
+{% endblock %}
